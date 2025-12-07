@@ -9,10 +9,16 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options
 
 class TestSmokeTest():
   def setup_method(self, method):
-    self.driver = webdriver.Firefox()
+    # self.driver = webdriver.Firefox()
+    # self.vars = {}
+    opts = Options()
+    opts.add_argument("--headless")  # run without GUI
+    opts.add_argument("--window-size=1920,1080")  # ensures elements are in viewport
+    self.driver = webdriver.Firefox(options=opts)
     self.vars = {}
   
   def teardown_method(self, method):
